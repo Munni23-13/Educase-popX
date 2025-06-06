@@ -1,17 +1,23 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
-import CreateAccount from "./pages/CreateAccount";
-import LoginPage from "./pages/LoginPage";
-import ProfileView from "./pages/Profileview";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import WelcomeScreen from './pages/WelcomeScreen';
+import LoginScreen from './pages/LoginScreen';
+import RegisterScreen from './pages/RegisterScreen';
+import AccountSettingsCard from './pages/AccountSettingsCard';
+
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/create-account" element={<CreateAccount />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/profile" element={<ProfileView />} />
+        {/* Public routes */}
+        <Route path="/" element={<WelcomeScreen />} />
+        <Route path="/welcome" element={<WelcomeScreen />} />
+        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/register" element={<RegisterScreen />} />
+        <Route path="/account-settings" element={<AccountSettingsCard />} />
+        
+        {/* Redirect unknown routes to welcome screen */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );
